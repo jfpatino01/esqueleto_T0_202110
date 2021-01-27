@@ -1,5 +1,10 @@
 package model.data_structures;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 2019-01-23
  * Estructura de Datos Arreglo Dinamico de Strings.
@@ -20,7 +25,7 @@ public class ArregloDinamico implements IArregloDinamico {
          * Arreglo de elementos de tamaNo maximo
          */
         private String elementos[ ];
-
+       
         /**
          * Construir un arreglo con la capacidad maxima inicial.
          * @param max Capacidad maxima inicial
@@ -58,20 +63,37 @@ public class ArregloDinamico implements IArregloDinamico {
 		}
 
 		public String darElemento(int i) {
-			// TODO implementar
-			return null;
+			String resp = tamanoAct>=i ?  elementos[i]:  null;
+			return resp;
 		}
-
+		
 		public String buscar(String dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			return null;
+			
+			String resp = null;			
+			for(String ele: elementos)
+			{
+				if((ele!=null) & ele.equals(dato))
+				{
+					resp = ele;
+				}
+			}
+			return resp;
 		}
 
 		public String eliminar(String dato) {
-			// TODO implementar
-			// Recomendacion: Usar el criterio de comparacion natural (metodo compareTo()) definido en Strings.
-			return null;
+			
+			if(buscar(dato)!=null)
+			{				
+				List<String> list = new ArrayList<>();
+				Collections.addAll(list, elementos);
+				list.removeAll(Arrays.asList(dato));
+				elementos = list.toArray(new String[list.size()]);
+				
+				tamanoAct--;
+				return dato;
+			}
+			else
+				return null;
 		}
 
 }
